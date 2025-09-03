@@ -19,7 +19,8 @@ This project demonstrates how to set up a **CI/CD pipeline** using **Jenkins** t
 
 ```shell
 sudo apt update && sudo apt upgrade -y
-sudo apt install openjdk-11-jdk -y
+sudo apt install fontconfig openjdk-21-jre
+java -version
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
 /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
@@ -29,10 +30,11 @@ sudo apt update
 sudo apt install jenkins -y
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
+sudo systemctl status jenkins
 ```
 
 
-Access Jenkins → http://localhost:8080
+Access Jenkins → http://public-ip:8080
 
 ## Install Git
 
