@@ -17,7 +17,7 @@ This project demonstrates how to set up a **CI/CD pipeline** using **Jenkins** t
 
 ## Install Jenkins
 
-'''shell
+```shell
 sudo apt update && sudo apt upgrade -y
 sudo apt install openjdk-11-jdk -y
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
@@ -29,21 +29,25 @@ sudo apt update
 sudo apt install jenkins -y
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
-'''
+```
 
 
 Access Jenkins → http://localhost:8080
 
-##Install Git
+## Install Git
 
+```shell
 sudo apt install git -y
+```
 
 
-##Install Python
+## Install Python
 
+```shell
 sudo apt install python3 python3-pip -y
+```
 
-##Jenkins Job Setup
+## Jenkins Job Setup
 
 Open Jenkins → http://localhost:8080
 
@@ -53,17 +57,18 @@ Configure GitHub Repository:
 
 Source Code Management → Git → Add your repo URL
 
-##Configure Build Steps:
+## Configure Build Steps:
 
 #!/bin/bash
 cd $WORKSPACE
 pip3 install -r requirements.txt
 nohup python3 app.py &
 
-##Example Python App
+## Example Python App
 
 app.py
 
+```python
 from flask import Flask
 app = Flask(__name__)
 
@@ -73,14 +78,16 @@ def home():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+```
 
 
 requirements.txt
 
+```txt
 flask
+```
 
-
-##Run manually for testing:
+## Run manually for testing:
 
 pip3 install flask
 python3 app.py
@@ -88,7 +95,7 @@ python3 app.py
 
 Check at → http://localhost:5000
 
-##How CI/CD Works
+## How CI/CD Works
 
 Developer pushes code to GitHub
 
@@ -100,7 +107,7 @@ Jenkins installs dependencies
 
 Jenkins deploys (runs Flask app in background)
 
-##Webhook Secret (Optional)
+## Webhook Secret (Optional)
 
 If using GitHub Webhook:
 
@@ -108,6 +115,6 @@ Set a secret token in GitHub → Jenkins GitHub Plugin
 
 Ensures payloads are trusted & secure
 
-##Outcome
+## Outcome
 
 This project demonstrates a complete CI/CD pipeline for Python app deployment with Jenkins on Linux, simulating real-world workflows.
