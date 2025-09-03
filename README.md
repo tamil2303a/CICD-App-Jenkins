@@ -59,10 +59,17 @@ Source Code Management → Git → Add your repo URL
 
 ## Configure Build Steps:
 
-#!/bin/bash
-cd $WORKSPACE
-pip3 install -r requirements.txt
-nohup python3 app.py &
+Dockerfile
+
+```shell
+FROM python:3.11-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+EXPOSE 5000
+CMD ["python", "app.py"]
+```
 
 ## Example Python App
 
@@ -89,11 +96,12 @@ flask
 
 ## Run manually for testing:
 
+```shell
 pip3 install flask
 python3 app.py
+```
 
-
-Check at → http://localhost:5000
+Check at → http://public-ip:5000
 
 ## How CI/CD Works
 
