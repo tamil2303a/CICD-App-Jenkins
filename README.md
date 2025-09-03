@@ -36,26 +36,13 @@ sudo systemctl status jenkins
 
 Access Jenkins → http://public-ip:8080
 
-## Install Git
-
-```shell
-sudo apt install git -y
-```
-
-
-## Install Python
-
-```shell
-sudo apt install python3 python3-pip -y
-```
-
 ## Jenkins Job Setup
 
-Open Jenkins → http://localhost:8080
+Open Jenkins → http://public-ip:8080
 
-Create New Item → Select Freestyle Project
+Create New Item → Select pipeline Project
 
-Configure GitHub Repository:
+## Configure GitHub Repository:
 
 Source Code Management → Git → Add your repo URL
 
