@@ -15,22 +15,48 @@ This project demonstrates how to set up a **CI/CD pipeline** using **Jenkins** t
 
 ---
 
-## Install Jenkins
+## Prerequesties: Install Docker and Jenkins
 
 ```shell
 sudo apt update && sudo apt upgrade -y
+
+# Install Docker
+sudo apt install -y docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+
+# Install Java (Jenkins requirement)
 sudo apt install fontconfig openjdk-21-jre
 java -version
+
+# Install Jenkins
+
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
-/usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
-/etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt update
-sudo apt install jenkins -y
-sudo systemctl start jenkins
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+
+sudo apt-get update
+sudo apt-get install jenkins
+
+# Start Jenkins
 sudo systemctl enable jenkins
+sudo systemctl start jenkins
+
 sudo systemctl status jenkins
+
+sudo usermod -aG docker $USER
+groups $USER
+docker ps
+sudo systemctl start docker
+sudo systemctl enable docker
+ls -l /var/run/docker.sock
+sudo chown root:docker /var/run/docker.sock
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
 ```
 
 
